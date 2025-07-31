@@ -1,0 +1,9 @@
+# /requirements.txt
+pyrogram[asyncio]
+motor
+python-dotenv
+telegraph
+Pillow
+python-magic
+ebooklib
+PyMuPDF

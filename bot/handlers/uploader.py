@@ -12,14 +12,14 @@ async def telegraph_upload(client: Client, message: Message):
     # Give feedback to the user
     msg = await message.reply_text("`Downloading your image...`")
     
-    photo_path = None  # Initialize variable
+    photo_path = None  # Initialize variable to ensure it exists for the finally block
     try:
         photo_path = await message.download()
 
         await msg.edit_text("`Uploading to Telegraph...`")
         response = upload_file(photo_path)
 
-        # Check for a valid response
+        # Add a check for a valid API response
         if not isinstance(response, list) or not response:
             logging.error(f"Telegraph API returned an invalid response: {response}")
             await msg.edit_text("Sorry, there was an unexpected issue with the Telegraph API.")

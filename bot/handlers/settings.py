@@ -1,10 +1,11 @@
 # /bot/handlers/settings.py
 from pyrogram import Client, filters
 from pyrogram.types import Message
+from pyrogram.enums import ParseMode  # <-- 1. IMPORT THIS
 from bot.bot_instance import app
 from bot.utils.decorators import is_sudo
 from database.mongo import db
-from config import Config # <-- ADD THIS LINE
+from config import Config
 
 @app.on_message(filters.command("settings") & filters.user(Config.SUDO_ADMINS))
 @is_sudo
@@ -18,7 +19,10 @@ async def settings_command(client: Client, message: Message):
         f"<b>Start Picture URL/ID:</b> <pre>{start_pic}</pre>\n\n"
         f"Use /set_start_text and /set_start_pic to change these."
     )
-    await message.reply_text(settings_msg, parse_mode="html")
+    await message.reply_text(
+        settings_msg,
+        parse_mode=ParseMode.HTML  # <-- 2. CORRECT THIS
+    )
 
 @app.on_message(filters.command("set_start_text") & filters.user(Config.SUDO_ADMINS))
 @is_sudo

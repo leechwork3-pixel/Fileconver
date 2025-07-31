@@ -4,6 +4,7 @@ from pyrogram.types import Message
 from bot.bot_instance import app
 from bot.utils.decorators import is_sudo
 from database.mongo import db
+from config import Config # <-- ADD THIS LINE
 
 @app.on_message(filters.command("settings") & filters.user(Config.SUDO_ADMINS))
 @is_sudo
@@ -38,3 +39,4 @@ async def set_start_pic_command(client: Client, message: Message):
         await message.reply_text("✅ Start picture has been updated successfully!")
     else:
         await message.reply_text("Please reply to an image with /set_start_pic to set it as the start picture.")
+        

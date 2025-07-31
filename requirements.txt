@@ -7,3 +7,4 @@ Pillow
 python-magic
 ebooklib
 PyMuPDF
+TgCrypto

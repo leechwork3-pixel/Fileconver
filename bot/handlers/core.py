@@ -1,6 +1,8 @@
 # /bot/handlers/core.py
+
 from pyrogram import Client, filters
 from pyrogram.types import Message
+from pyrogram.enums import ParseMode # <-- 1. IMPORT THIS
 from bot.bot_instance import app
 from database.mongo import db
 from config import Config
@@ -23,13 +25,19 @@ async def start_command(client: Client, message: Message):
     start_pic = await db.get_setting("start_pic")
 
     if start_pic:
-        await message.reply_photo(photo=start_pic, caption=start_text, parse_mode="html")
+        await message.reply_photo(
+            photo=start_pic, 
+            caption=start_text, 
+            parse_mode=ParseMode.HTML  # <-- 2. CORRECT THIS
+        )
     else:
-        await message.reply_text(start_text, parse_mode="html")
+        await message.reply_text(
+            start_text,
+            parse_mode=ParseMode.HTML  # <-- 3. CORRECT THIS
+        )
 
 @app.on_message(filters.command("help") & filters.private)
 async def help_command(client: Client, message: Message):
-    # This can be expanded with an image and more details
     help_text = """
     <b>Here are the available commands:</b>
 
@@ -52,5 +60,8 @@ async def help_command(client: Client, message: Message):
     /addsudo <user_id> - Add a Sudo Admin
     /rmsudo <user_id> - Remove a Sudo Admin
     """
-    await message.reply_text(help_text, parse_mode="html")
-  
+    await message.reply_text(
+        help_text,
+        parse_mode=ParseMode.HTML  # <-- 4. CORRECT THIS
+    )
+    

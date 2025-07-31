@@ -9,3 +9,4 @@ ebooklib
 PyMuPDF
 TgCrypto
 Flask
+beautifulsoup4

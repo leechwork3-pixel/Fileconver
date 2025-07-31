@@ -24,3 +24,6 @@ class Config:
 
     # --- Telegraph ---
     TELEGRAPH_ACCOUNT_NAME = os.environ.get("TELEGRAPH_ACCOUNT_NAME", "@Element_Network")
+    # Add the new token variable
+    TELEGRAPH_TOKEN = os.environ.get("TELEGRAPH_TOKEN", None)
+    
